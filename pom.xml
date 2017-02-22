@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xzy.cm</groupId>
+    <artifactId>cm</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>nosql</module>
+        <module>mvc</module>
+        <module>mybatis</module>
+        <module>kafka</module>
+        <module>netflix</module>
+        <module>quartz</module>
+        <module>common</module>
+    </modules>
+
+    <name>cm</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>4.2.8.RELEASE</org.springframework.version>
+    </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus-snapshots</name>
+            <url>http://192.168.199.60:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>releases</id>
+            <name>Nexus-releases</name>
+            <url>http://192.168.199.60:8081/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+</project>

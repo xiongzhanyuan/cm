@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+	   http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx.xsd" default-lazy-init="true">
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="query*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="fetch*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS" />
+            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+        </tx:attributes>
+    </tx:advice>
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="springboot.mybatis" expression="execution(* com.xzy..service..*Service*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="springboot.mybatis" />
+    </aop:config>
+
+
+</beans>
