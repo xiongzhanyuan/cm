@@ -1,7 +1,7 @@
 # quartz
     动态处理定时任务，支持定时任务的动态添加 修改时间 暂停 恢复 启动等功能
     1. 创建任务 `/service/quartz/add_job`
-        `{
+         {
          	"jobName":"testAddJob",
          	"cronExpression":"*/5 * * * * ?",
          	"jobGroup":"testAddJobGroup",
@@ -9,16 +9,16 @@
          	"desc":"description",
          	"clazz":"com.xzy.chenbao.business.job.CommonJob",
          	"data":{"name":"aaa", "value":"bbb"}
-         }`
+         }
          cronExpression:cron表达式， clazz:需要执行的类名， data:需要的业务参数 在执行类中可以获取
          执行类获取参数 例如：
-         `public class CommonJob implements Job {
+          public class CommonJob implements Job {
           	@Override
           	public void execute(JobExecutionContext context) throws JobExecutionException {
           		String method = context.getJobDetail().getKey().getName();
           		JSONObject data = (JSONObject) context.getJobDetail().getJobDataMap().get("data");
           	}
-          }`
+          }
     2. 暂停一个job（以下详见ScheduleController 和 ScheduleServiceImpl）
     3. 恢复一个job
     4. 删除一个job
@@ -31,17 +31,17 @@
 # kafka
     spring-kafka 消息生产消费
     1. 生产消息 /service/producer/add
-        `{
+         {
          	"topic":"chenbao",
          	"msg":"测试"
-         }`
+         }
     2. 消费消息
-        `@Bean
+         @Bean
          public KafkaListeners kafkaListeners() {
              return new KafkaListeners();
-         }`
+         }
          
-         `public class KafkaListeners {
+         public class KafkaListeners {
               @KafkaListener(topics = {"chenbao"})
               public void listen(ConsumerRecord<?, ?> record) {
                   Optional<?> kafkaMessage = Optional.ofNullable(record.value());
@@ -50,7 +50,7 @@
                       System.out.println(message);
                   }
               }
-          }`
+          }
 # mvc 
     处理数据转换等
 # mybatis
