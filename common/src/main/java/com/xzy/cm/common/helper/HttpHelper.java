@@ -139,6 +139,26 @@ public class HttpHelper {
 	}
 
 	/**
+	 *
+	 * @param url
+	 * @param param
+	 * @return
+	 */
+	public static String post(String url, String param,  ContentType contentType) throws Exception {
+		return getContent(url, param, "post", contentType);
+	}
+
+	/**
+	 *设置header的post
+	 * @param url
+	 * @param param
+	 * @return
+	 */
+	public static String post(String url, String param,  ContentType contentType,Header... headers) throws Exception {
+		return getContent(url, param, "post", contentType, headers);
+	}
+
+	/**
 	 * 
 	 * @param url
 	 * @param param
